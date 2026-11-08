@@ -1,0 +1,34 @@
+name: Build and Test
+
+on:
+  push:
+    branches-ignore: [generated]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash -euo pipefail {0}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+    - uses: actions/checkout@v6
+
+    - uses: mlugg/setup-zig@d1434d08867e3ee9daa34448df10607b98908d29  # v2 tag
+      with:
+        version: 0.16.0
+
+    - name: Check formatting
+      run: zig fmt --check build.zig src
+
+    - name: Build and test
+      run: |
+        zig build
+        zig build test
+        bash tests/smoke.sh

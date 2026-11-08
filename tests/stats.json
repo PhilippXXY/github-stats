@@ -1,0 +1,17 @@
+{
+  "repositories": [
+    {
+      "name": "example/project",
+      "stars": 1234,
+      "forks": 2,
+      "languages": [{"name": "Zig", "size": 100, "color": "#f7a41d"}],
+      "lines_changed": 5678,
+      "views": 90,
+      "private": false
+    }
+  ],
+  "user": "example",
+  "name": "Example User",
+  "emails": [],
+  "commit_contributions": 42
+}
